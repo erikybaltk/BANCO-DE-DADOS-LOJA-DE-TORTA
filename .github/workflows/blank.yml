@@ -1,0 +1,65 @@
+/*
+    Loja de tortas 
+
+    * Vende tortas (tortas doces e salgadas)
+
+    * Dados dos clientes:
+	    Nome (texto)
+	    nascimento (data dd/mm/aaaa)
+	    sexo (n?mero)
+	    endere?o
+		    Rua (texto)
+	  	    cidade (texto)
+	 	    Estado (texto)
+	    Telefones (texto)
+
+    * Dados das vendas
+	    N?mero da venda (n?mero)
+	    cliente que comprou (texto)
+	    pre?o total (n?mero)
+
+    * Dados do produto
+	    Nome (texto)
+	    Pre?o (n?mero)
+*/
+/*
+    Truncar - Diminui o tamanho do texto/dado
+
+    nmProduto VARCHAR(5);
+
+	"Chocolate" (9 letras) -> (Choco)
+*/
+CREATE TABLE tb_Produtos (
+    cdProduto INT PRIMARY KEY IDENTITY(1,1),
+    vlProduto DECIMAL(6,2) NOT NULL,
+	nmProduto VARCHAR(50) NOT NULL, -- Obrigatorio
+	
+);
+
+
+
+
+
+CREATE TABLE tb_Clientes (
+    cdCliente INT PRIMARY KEY IDENTITY(1,1),
+	nmCliente VARCHAR(50) NOT NULL,
+	dtNascimento DATE,
+	inSexo VARCHAR(1) NOT NULL,
+	nmEndereco VARCHAR(50),
+	nmTelefone1 VARCHAR(15),
+	nmTelefone2 VARCHAR(15),
+)
+
+CREATE TABLE tb_Vendas (
+    cdVenda INT PRIMARY KEY IDENTITY(1,1),
+	vlProduto DECIMAL(6,2) NOT NULL,
+	cdProduto INT NOT NULL,
+);
+
+-- FOREIGN KEY
+-- CONSTRAINT
+
+ALTER TABLE tb_Vendas
+ADD CONSTRAINT FK_Produto_Vendas
+FOREIGN KEY (cdProduto)
+REFERENCES tb_Produtos (cdProduto)
